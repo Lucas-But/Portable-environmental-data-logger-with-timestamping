@@ -1,0 +1,82 @@
+import time
+from machine import I2C, Pin
+import dht12
+import network
+import ntptime
+try:
+    #Constants
+    ADDR = 0x60
+    CTRL_REG1 = 0x26
+    PT_DATA_CFG = 0x13
+    STATUS = 0x00
+    OUT_P_MSB = 0x01
+    SSID="UREL-SC661-V-2.4G"
+    PASSWORD="TomFryza"
+
+    #I2C Setup
+    i2c =I2C(0, scl=Pin(22), sda=Pin(21), freq=100_000)
+    sensorTemHum = dht12.DHT12(i2c)
+    
+    if sensorTemHum.check():
+        print(f"DHT12 found at I2C address {dht12.I2C_ADDRESS:#x}")
+
+    i2c.writeto_mem(ADDR, PT_DATA_CFG, b'\x07')
+    
+    # Function connect wifi get time
+    def do_connect():
+        wlan = network.WLAN(network.STA_IF)
+        wlan.active(True)
+        if not wlan.isconnected():
+            print('conectando a la red')
+            wlan.connect(SSID, PASSWORD)
+            while not wlan.isconnected():
+                time.sleep(1)
+        print('configuración de red:', wlan.ifconfig())
+        
+
+    do_connect()
+    
+    try:
+            ntptime.settime()
+    except OSError:
+        print("No se pudo conectar al servidor NTP. Verifique la conexión a internet.")
+    
+    # Monitorize
+    while True:
+        
+        #DHT12 section
+        sensorTemHum.measure()
+        t=sensorTemHum.temperature()
+        h=sensorTemHum.humidity()
+        
+        #mpl3115a2 Section
+        i2c.writeto_mem(ADDR, CTRL_REG1, b'\x38')  # Standby
+        i2c.writeto_mem(ADDR, CTRL_REG1, b'\x39')  # Active 
+        time.sleep(1)
+
+        
+        status = i2c.readfrom_mem(ADDR, STATUS, 1)
+        if status[0] & 0x08:
+            data = i2c.readfrom_mem(ADDR, OUT_P_MSB, 3)
+            pres_raw = (data[0] << 16 | data[1] << 8 | data[2]) >> 6
+            pressure_pa = pres_raw / 4.0
+        else:
+            print("error altimeter")
+            
+            
+        local_time = time.localtime()
+            
+        print(f"Temperature: {t} C, Humidity: {h} RH, Relative Pressure: {pressure_pa:.2f} Pa, Year:{local_time[0]} , Month:{local_time[1]} , Day:{local_time[2]} , Hour:{local_time[3]}, Minute:{local_time[4]}, Second:{local_time[5]}" )
+        time.sleep(1)
+        
+        
+    #Export data
+        
+        
+        
+        
+        
+        
+except KeyboardInterrupt:
+    
+    print(f"Program stopped manually")
