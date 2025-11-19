@@ -40,38 +40,42 @@ try:
             ntptime.settime()
     except OSError:
         print("No se pudo conectar al servidor NTP. Verifique la conexión a internet.")
+    #Prepare storage
+    with open("monitoreo.csv", "a") as storage:
     
     # Monitorize
-    while True:
-        
-        #DHT12 section
-        sensorTemHum.measure()
-        t=sensorTemHum.temperature()
-        h=sensorTemHum.humidity()
-        
-        #mpl3115a2 Section
-        i2c.writeto_mem(ADDR, CTRL_REG1, b'\x38')  # Standby
-        i2c.writeto_mem(ADDR, CTRL_REG1, b'\x39')  # Active 
-        time.sleep(1)
+        while True:
+            
+            #DHT12 section
+            sensorTemHum.measure()
+            t=sensorTemHum.temperature()
+            h=sensorTemHum.humidity()
+            
+            #mpl3115a2 Section
+            i2c.writeto_mem(ADDR, CTRL_REG1, b'\x38')  # Standby
+            i2c.writeto_mem(ADDR, CTRL_REG1, b'\x39')  # Active 
+            time.sleep(1)
 
-        
-        status = i2c.readfrom_mem(ADDR, STATUS, 1)
-        if status[0] & 0x08:
-            data = i2c.readfrom_mem(ADDR, OUT_P_MSB, 3)
-            pres_raw = (data[0] << 16 | data[1] << 8 | data[2]) >> 6
-            pressure_pa = pres_raw / 4.0
-        else:
-            print("error altimeter")
+
+            
+            status = i2c.readfrom_mem(ADDR, STATUS, 1)
+            if status[0] & 0x08:
+                data = i2c.readfrom_mem(ADDR, OUT_P_MSB, 3)
+                pres_raw = (data[0] << 16 | data[1] << 8 | data[2]) >> 6
+                pressure_pa = pres_raw / 4.0
+            else:
+                print("error altimeter")
+                
+                
+            local_time = time.localtime()
+                
+            print(f"Temperature: {t} C, Humidity: {h} RH, Relative Pressure: {pressure_pa:.2f} Pa, Year:{local_time[0]} , Month:{local_time[1]} , Day:{local_time[2]} , Hour:{local_time[3]}, Minute:{local_time[4]}, Second:{local_time[5]}" )
+            time.sleep(1)
             
             
-        local_time = time.localtime()
-            
-        print(f"Temperature: {t} C, Humidity: {h} RH, Relative Pressure: {pressure_pa:.2f} Pa, Year:{local_time[0]} , Month:{local_time[1]} , Day:{local_time[2]} , Hour:{local_time[3]}, Minute:{local_time[4]}, Second:{local_time[5]}" )
-        time.sleep(1)
-        
-        
-    #Export data
-        
+        #Export data
+            storage.write(f"{t} C,{h} RH, {pressure_pa:.2f} Pa, {local_time[0]} {local_time[1]} {local_time[2]} {local_time[3]}:{local_time[4]}:{local_time[5]}\n")
+            storage.flush() 
         
         
         
