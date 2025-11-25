@@ -1,7 +1,7 @@
 import time
 import machine
 
-class Errors:
+class ERRORS:
   def _init_(self, i2c):
     self.i2c=i2c
 
