@@ -40,23 +40,24 @@ try:
             ntptime.settime()
     except OSError:
         print("No se pudo conectar al servidor NTP. Verifique la conexión a internet.")
+    #Prepare Altimeter to read
+    i2c.writeto_mem(ADDR, PT_DATA_CFG, b'\x07')
+    i2c.writeto_mem(ADDR, CTRL_REG1, b'\x38')  # Standby
+    i2c.writeto_mem(ADDR, CTRL_REG1, b'\x39')  # Active
+    time.sleep(1)
     #Prepare storage
     with open("monitoreo.csv", "a") as storage:
-    
+ 
     # Monitorize
         while True:
             
             #DHT12 section
+            
             sensorTemHum.measure()
             t=sensorTemHum.temperature()
             h=sensorTemHum.humidity()
             
             #mpl3115a2 Section
-            i2c.writeto_mem(ADDR, CTRL_REG1, b'\x38')  # Standby
-            i2c.writeto_mem(ADDR, CTRL_REG1, b'\x39')  # Active 
-            time.sleep(1)
-
-
             
             status = i2c.readfrom_mem(ADDR, STATUS, 1)
             if status[0] & 0x08:
