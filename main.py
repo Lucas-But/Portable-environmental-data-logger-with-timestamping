@@ -39,8 +39,9 @@ try:
 
     led=Pin(2 , Pin.OUT)
     sensorconnection=0
+    bugs = problems.ERRORS(i2c)
     while sensorconnection==0:
-        sensorconnection= problems.ERRORS(i2c).i2c_check()
+        sensorconnection= bugs.i2c_check()
         if sensorconnection==0:
             print("waiting for connection")
             for _ in range(5):
