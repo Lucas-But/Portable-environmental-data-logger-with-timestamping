@@ -3,6 +3,7 @@ from machine import I2C, Pin
 import dht12
 import network
 import ntptime
+import problems
 try:
     #Constants
     ADDR = 0x60
