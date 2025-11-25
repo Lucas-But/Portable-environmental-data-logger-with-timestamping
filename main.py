@@ -36,16 +36,17 @@ try:
     #I2C Setup
     i2c =I2C(0, scl=Pin(22), sda=Pin(21), freq=100_000)
     sensorTemHum = dht12.DHT12(i2c)
-    
+
+    led=Pin(2 , Pin.OUT)
     sensorconnection=0
-    while sensorconnection=0:
+    while sensorconnection==0:
         sensorconnection= problems.ERRORS(i2c).i2c_check()
-        if sensorconnection=0:
+        if sensorconnection==0:
             print("waiting for connection")
-            for _ in range(5)
-                Pin(2 , Pin.out).off
+            for _ in range(5):
+                led.off()
                 time.sleep(0.5)
-                Pin(2 , Pin.out).on
+                led.on()
                 time.sleep(0.5)
             
     # Function connect wifi get time
