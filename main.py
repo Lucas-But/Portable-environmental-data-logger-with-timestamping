@@ -4,7 +4,7 @@ from machine import I2C, Pin
 import dht12
 import network
 import ntptime
-import problems
+import tools
 try:
     #Constants
     ADDR = 0x60
@@ -39,7 +39,7 @@ try:
 
     led=Pin(2 , Pin.OUT)
     sensorconnection=0
-    bugs = problems.ERRORS(i2c)
+    bugs = tools.ERRORS(i2c)
     while sensorconnection==0:
         sensorconnection= bugs.i2c_check()
         if sensorconnection==0:
@@ -62,7 +62,7 @@ try:
         print('configuración de red:', wlan.ifconfig())
         
 
-    do_connect()
+    tools.do_connect()
     
     try:
             ntptime.settime()
