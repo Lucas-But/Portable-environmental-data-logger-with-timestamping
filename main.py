@@ -42,7 +42,7 @@ try:
         sensorconnection= problems.ERRORS(i2c).i2c_check
         if sensorconnection=0:
             print("waiting for connection")
-            for blink in range(5)
+            for _ in range(5)
                 Pin(2 , Pin.out).off
                 time.sleep(0.5)
                 Pin(2 , Pin.out).on
