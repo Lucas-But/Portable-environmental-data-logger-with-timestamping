@@ -78,7 +78,7 @@ try:
 
     
     #Prepare storage
-    with open("monitoreo.csv", "a") as storage:
+    with open("monitoring.csv", "a") as storage:
  
         # Monitorize
         while True:
