@@ -13,13 +13,13 @@ class ERRORS:
         else:
             print("Problem Sensors. CHECK CONNECTION")
             return 0
-def do_connect():
-    wlan = network.WLAN(network.STA_IF)
-    wlan.active(True)
-        if not wlan.isconnected():
-            print('connecting to the network')
-            wlan.connect(SSID, PASSWORD)
-            while not wlan.isconnected():
-                time.sleep(1)
-            print('network configuration:', wlan.ifconfig())
-      
+    def do_connect():
+        wlan = network.WLAN(network.STA_IF)
+        wlan.active(True)
+            if not wlan.isconnected():
+                print('connecting to the network')
+                wlan.connect(SSID, PASSWORD)
+                while not wlan.isconnected():
+                    time.sleep(1)
+                print('network configuration:', wlan.ifconfig())
+          
