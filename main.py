@@ -39,7 +39,7 @@ try:
     
     sensorconnection=0
     while sensorconnection=0:
-        sensorconnection= problems.ERRORS(i2c).i2c_check
+        sensorconnection= problems.ERRORS(i2c).i2c_check()
         if sensorconnection=0:
             print("waiting for connection")
             for _ in range(5)
