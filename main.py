@@ -18,11 +18,13 @@ try:
     i2c =I2C(0, scl=Pin(22), sda=Pin(21), freq=100_000)
     sensorTemHum = dht12.DHT12(i2c)
     
-    if sensorTemHum.check():
-        print(f"DHT12 found at I2C address {dht12.I2C_ADDRESS:#x}")
-
-    i2c.writeto_mem(ADDR, PT_DATA_CFG, b'\x07')
-    
+    sensorconnection=0
+    while sensorconnection=0:
+        sensorconnection= problems.ERRORS(i2c).i2c_check
+        if sensorconnection=0:
+            print("waiting for connection")
+            time.sleep(5)
+            
     # Function connect wifi get time
     def do_connect():
         wlan = network.WLAN(network.STA_IF)
