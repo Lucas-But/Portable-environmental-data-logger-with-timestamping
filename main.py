@@ -42,7 +42,11 @@ try:
         sensorconnection= problems.ERRORS(i2c).i2c_check
         if sensorconnection=0:
             print("waiting for connection")
-            time.sleep(5)
+            for blink in range(5)
+                Pin(2 , Pin.out).off
+                time.sleep(0.5)
+                Pin(2 , Pin.out).on
+                time.sleep(0.5)
             
     # Function connect wifi get time
     def do_connect():
