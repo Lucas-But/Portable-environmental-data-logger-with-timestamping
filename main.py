@@ -1,4 +1,5 @@
 import time
+import os
 from machine import I2C, Pin
 import dht12
 import network
@@ -13,7 +14,25 @@ try:
     OUT_P_MSB = 0x01
     SSID="UREL-SC661-V-2.4G"
     PASSWORD="TomFryza"
-
+    
+    #SPI setup card
+    #spi = machine.SPI(1,
+    #baudrate=1000000,
+    #polarity=0,
+    #phase=0,
+    #sck=machine.Pin(18),
+    #mosi=machine.Pin(23),
+    #miso=machine.Pin(19)
+    #)
+    #chip select
+    #cs = machine.Pin(5, machine.Pin.OUT)
+    
+    #Initialize
+    #sd = machine.SDCard(spi=spi, cs=cs)
+    
+    #Create sd
+    #os.mount(sd, "/sd")
+    
     #I2C Setup
     i2c =I2C(0, scl=Pin(22), sda=Pin(21), freq=100_000)
     sensorTemHum = dht12.DHT12(i2c)
@@ -84,7 +103,8 @@ try:
         #Export data
             storage.write(f"{t} C,{h} RH, {pressure_pa:.2f} Pa, {local_time[0]} {local_time[1]} {local_time[2]} {local_time[3]}:{local_time[4]}:{local_time[5]}\n")
             storage.flush() 
-        
+            #open("/sd/monitoring.csv","a").write(f"{t} C,{h} RH, {pressure_pa:.2f} Pa, {local_time[0]} {local_time[1]} {local_time[2]} {local_time[3]}:{local_time[4]}:{local_time[5]}\n")
+            #open("/sd/monitoring.csv","a").flush()
         
         
         
