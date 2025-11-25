@@ -79,7 +79,7 @@ try:
     #Prepare storage
     with open("monitoreo.csv", "a") as storage:
  
-    # Monitorize
+        # Monitorize
         while True:
             
             #DHT12 section
@@ -90,6 +90,7 @@ try:
             
             #mpl3115a2 Section
             
+            pressure_pa=0
             status = i2c.readfrom_mem(ADDR, STATUS, 1)
             if status[0] & 0x08:
                 data = i2c.readfrom_mem(ADDR, OUT_P_MSB, 3)
