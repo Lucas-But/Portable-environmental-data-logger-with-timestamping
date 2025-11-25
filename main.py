@@ -67,7 +67,7 @@ try:
     try:
             ntptime.settime()
     except OSError:
-        print("No se pudo conectar al servidor NTP. Verifique la conexión a internet.")
+        print("Cannot synchronize time. CHECK INTERNET CONNECTION")
         
     #Prepare Altimeter to read
     
