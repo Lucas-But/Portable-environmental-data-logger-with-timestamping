@@ -6,8 +6,8 @@ class ERRORS:
     self.i2c=i2c
 
   def i2c_check(self):
-    adrrs= i2c.scan()
-    if (adrrs[1]= 0x5c && adrrs[0]=0x60) || (adrrs[1]= 0x60 && adrrs[0]=0x5c):
+    addrs= i2c.scan()
+    if (hex(addrs[1])= 0x5c && hex(addrs[0])=0x60) || (hex(addrs[1])= 0x60 && hex(addrs[0]=0x5c)):
       print("All the sensors are connected")
       return 1
     else:
