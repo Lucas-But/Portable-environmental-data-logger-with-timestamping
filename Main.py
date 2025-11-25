@@ -40,11 +40,15 @@ try:
             ntptime.settime()
     except OSError:
         print("No se pudo conectar al servidor NTP. Verifique la conexión a internet.")
+        
     #Prepare Altimeter to read
-    i2c.writeto_mem(ADDR, PT_DATA_CFG, b'\x07')
+    
+    i2c.writeto_mem(ADDR, PT_DATA_CFG, b'\x07') # Interruption activation
     i2c.writeto_mem(ADDR, CTRL_REG1, b'\x38')  # Standby
     i2c.writeto_mem(ADDR, CTRL_REG1, b'\x39')  # Active
     time.sleep(1)
+
+    
     #Prepare storage
     with open("monitoreo.csv", "a") as storage:
  
