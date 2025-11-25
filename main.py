@@ -50,18 +50,7 @@ try:
                 led.on()
                 time.sleep(0.5)
             
-    # Function connect wifi get time
-    def do_connect():
-        wlan = network.WLAN(network.STA_IF)
-        wlan.active(True)
-        if not wlan.isconnected():
-            print('conectando a la red')
-            wlan.connect(SSID, PASSWORD)
-            while not wlan.isconnected():
-                time.sleep(1)
-        print('configuración de red:', wlan.ifconfig())
-        
-
+    # Function connect wifi get time        
     tools.do_connect()
     
     try:
