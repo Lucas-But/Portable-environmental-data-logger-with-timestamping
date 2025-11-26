@@ -10,3 +10,4 @@ To complete all this we will be using the following components:
   - ESP32 --> to process all this data and do the following steps.
 
 https://github.com/mcauser/micropython-dht12/tree/master
+https://github.com/micropython/micropython-lib/blob/master/LICENSE
