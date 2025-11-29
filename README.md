@@ -1,3 +1,7 @@
+<img width="4621" height="4621" alt="image" src="https://github.com/user-attachments/assets/605c0df4-116f-4b21-9aa7-e31e895c3f33" />
+
+
+
 # Portable-environmental-data-logger-with-timestamping
 Collect and store environmental **data** (temperature, pressure, light, motion, etc.) to an SD card or **internal memory**. Include a real-time clock for **timestamping**. **Export** data to computer.
 
