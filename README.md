@@ -31,9 +31,20 @@ With the following flow chart we describes the main process of our sofware:
 ## Project Development
 ### Project Demonstration
 
+
 ### Documented Code
+The code it is divided in two main types the ones developed in by ourselfs and the ones that have been imported to use it as libraries.
+#### Own code
+##### Main
+In the main we can find 7 stages of the code:
+###### 1st stage
+
 ### Technical documentation
+
+
 ### Pitch Poster
+
+
 
 https://github.com/micropython/micropython-lib/blob/master/LICENSE
 
