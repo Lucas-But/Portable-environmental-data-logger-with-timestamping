@@ -7,7 +7,7 @@ Collect and store environmental **data** (temperature, pressure, light, motion, 
 Our goal with this project is to create an autonomous weather station that colects enviromental data, such as: temperature, preassure and humidity. To fulfil this function we will be using some sensors connected via serial communication to the MCU that will collect, process, and store or send it in order to use it after. All this processes will be continiously monitorized by the MCU and each value will be stored assigned to the moment when it was measured.
 
 
-
+# Table-with-used-components
  
 | ***Components***               | ***Description*** | ***Image*** |
 |-------------------------|-------------|--------|
