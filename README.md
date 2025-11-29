@@ -23,6 +23,7 @@ Our goal with this project is to create an autonomous weather station that colec
 https://github.com/mcauser/micropython-dht12/tree/master
 
 # Software Logic
+<img width="6820" height="5747" alt="image" src="https://github.com/user-attachments/assets/9efe02a5-ee58-49a4-ba2c-5420ef277649" />
 
 
 https://github.com/micropython/micropython-lib/blob/master/LICENSE
