@@ -29,6 +29,10 @@ With the following flow chart we describes the main process of our sofware:
 <img width="2105" height="5747" alt="image" src="https://github.com/user-attachments/assets/a99b40f2-1897-4b87-a10f-c3d1e3342a34" />
 
 ## Project Development
+### Project Demonstration
+
+### Documented Code
+
 
 https://github.com/micropython/micropython-lib/blob/master/LICENSE
 
