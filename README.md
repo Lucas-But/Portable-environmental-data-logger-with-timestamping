@@ -37,7 +37,26 @@ The code it is divided in two main types the ones developed in by ourselfs and t
 #### Own code
 ##### Main
 In the main we can find 7 stages of the code:
-###### 1st stage
+###### 1st stage: Initialization
+
+
+###### 2nd stage:Connection Verification
+
+
+###### 3rd stage:Network & Time Sync
+
+
+###### 4th stage:Sensor Configuration
+
+
+###### 5th stage:Storage Preparation
+
+
+###### 6th stage:Monitoring Loop
+
+
+###### 7th stage:Manual Interruption 
+
 
 ### Technical documentation
 
