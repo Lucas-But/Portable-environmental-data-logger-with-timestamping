@@ -3,6 +3,7 @@
 
 
 # Portable-environmental-data-logger-with-timestamping
+Nowadays all the energy renowable sources are dependant of the enviroment and its changes.
 Collect and store environmental **data** (temperature, pressure, light, motion, etc.) to an SD card or **internal memory**. Include a real-time clock for **timestamping**. **Export** data to computer.
 
 
