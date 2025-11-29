@@ -32,7 +32,8 @@ With the following flow chart we describes the main process of our sofware:
 ### Project Demonstration
 
 ### Documented Code
-
+### Technical documentation
+### Pitch Poster
 
 https://github.com/micropython/micropython-lib/blob/master/LICENSE
 
