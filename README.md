@@ -3,14 +3,14 @@
 
 
 # Portable-environmental-data-logger-with-timestamping
-
+## Project development
 Nowadays all the renowable energy sources are dependant of the enviroment and its changes. Due to this fact before installing this type of big energy production plants, a enviromental study shoud be done to ensure the aerea it is suitable. In order to do the research we propose to use a **ESP32** to collect and store environmental **data** (temperature, pressure, light, motion, etc.) to an **SD card** or **internal memory**. Include a real-time clock for **timestamping**. **Export** data to computer to further analysis.
 
 
 Our goal with this project is to create an autonomous weather station that colects enviromental data, such as: temperature, preassure and humidity. To fulfil this function we will be using some sensors connected via serial communication to the MCU that will collect, process and store it in order to use it after. All this processes will be continiously monitorized by the MCU and each value will be timestamped to the moment when it was measured.
 
 
-# Table-with-used-components
+### Table-with-used-components
  
 | ***Components***               | ***Description*** | ***Image*** |
 |-------------------------|-------------|--------|
@@ -22,7 +22,7 @@ Our goal with this project is to create an autonomous weather station that colec
 
 https://github.com/mcauser/micropython-dht12/tree/master
 
-# Software Logic
+### Software Logic
 With the following flow chart we describes the main process of our sofware:
 
 
