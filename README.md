@@ -38,6 +38,7 @@ The code it is divided in two main types the ones developed in by ourselfs and t
 ##### Main
 In the main we can find 7 stages of the code:
 ###### 1st stage: Initialization
+In the first phase of the main our program initialize all the constants and communication protocols as well as create the memory space of the sd card
 ```python
 #Constants
     ADDR = 0x60
@@ -72,7 +73,7 @@ In the main we can find 7 stages of the code:
     led=Pin(2 , Pin.OUT)
     sensorconnection=0
     bugs = tools.ERRORS(i2c)
-
+```
 ###### 2nd stage:Connection Verification
 
 
