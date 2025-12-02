@@ -20,7 +20,6 @@ Our goal with this project is to create an autonomous weather station that colec
 | **ESP32 FireBeetle**    | Microprocesor | <img width="320"  src="https://github.com/user-attachments/assets/b03e0de9-60dd-40b8-ad49-f7ffebcfeb84" /> |
 | **MicroSD 8GB**    | SD storage | <img width="320" height="543" alt="image" src="https://github.com/user-attachments/assets/2ddc0fa7-6497-4d66-8750-d3dac361974c" />|
 
-https://github.com/mcauser/micropython-dht12/tree/master
 
 ### Software Logic
 With the following flow chart we describes the main process of our sofware:
@@ -204,7 +203,10 @@ This function was made to connect the esp32 to internet and it was written in th
 #### Code downloaded from other githubs
 ##### dht12 libraries
 This were downloaded from a github https://github.com/mcauser/micropython-dht12/tree/master the code it was located in the source carpet. This library contains some funcionalities for our sensor and has a MIT license so we are granted with permission to use it.
-```python
+<details>
+<summary>View code of the library</summary>
+ 
+ ```python
 # SPDX-FileCopyrightText: 2016 Mike Causer <https://github.com/mcauser>
 # SPDX-License-Identifier: MIT
 
@@ -245,10 +247,13 @@ class DHT12:
     def humidity(self):
         return self._buf[0] + self._buf[1] * 0.1
 ```
+</details>
+
+
 ##### sdcard library
 This library is has a class that is in charge of creating the connection between the ESP32 and the sd card module via SPI. The code was substarcted from this webpage: https://github.com/micropython/micropython-lib/tree/master/micropython/drivers/storage/sdcard and the repository is with an MIT license that allows us to use it.
 <details>
-<summary> View code from library </summary>
+<summary> View code of the library </summary>
 
  
 ```python
