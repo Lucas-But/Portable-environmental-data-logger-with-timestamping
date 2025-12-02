@@ -38,8 +38,9 @@ The code it is divided in two main types the ones developed in by ourselfs and t
 ##### Main
 In the main we can find 7 stages of the code:
 ###### 1st stage: Initialization
-In the first phase of the main our program initialize all the constants and communication protocols as well as create the memory space of the sd card
+In the first phase of the main our program initialize all the constants and communication protocols as well as create the memory space of the sd card:
 ```python
+try:
 #Constants
     ADDR = 0x60
     CTRL_REG1 = 0x26
@@ -70,27 +71,105 @@ In the first phase of the main our program initialize all the constants and comm
     i2c =I2C(0, scl=Pin(22), sda=Pin(21), freq=100_000)
     sensorTemHum = dht12.DHT12(i2c)
 
-    led=Pin(2 , Pin.OUT)
+    led1=Pin(2 , Pin.OUT)
+    led2=Pin(26 , Pin.OUT)
     sensorconnection=0
     bugs = tools.ERRORS(i2c)
 ```
 ###### 2nd stage:Connection Verification
+In this stage all the connections to the sensors are checked in order to ensure a proper function of our system.
+```python
+    sensorconnection=0
+    bugs = tools.ERRORS(i2c)
+    while sensorconnection==0:
+        sensorconnection= bugs.i2c_check()
+        if sensorconnection==0:
+            print("waiting for connection")
+            for _ in range(5):
+                led1.off()
+                time.sleep(0.5)
+                led1.on()
+                time.sleep(0.5)
 
+```
 
 ###### 3rd stage:Network & Time Sync
-
-
+In this part we use a function from our custom library named tools to make a connection to the internet so we can get the time:
+```python
+ tools.do_connect()
+    
+    try:
+            ntptime.settime()
+    except OSError:
+        print("Cannot synchronize time. CHECK INTERNET CONNECTION")
+```
 ###### 4th stage:Sensor Configuration
-
+In this phase we activate the interruption register from mpl3115a2 that messures the pressure, we put the sensor in standby and then we activate it. For stability reason we have implemented a time sleep so the sensor could be set properly.
+```python
+i2c.writeto_mem(ADDR, PT_DATA_CFG, b'\x07') # Interruption activation
+    i2c.writeto_mem(ADDR, CTRL_REG1, b'\x38')  # Standby
+    i2c.writeto_mem(ADDR, CTRL_REG1, b'\x39')  # Active
+    time.sleep(1)
+```
 
 ###### 5th stage:Storage Preparation
+In this case we have prepared two types of storage so in order fails one we have the backup of the other one. So, it has been set up as "storageI" the internal storage of the ESP32 and the "StorageE" as an external SD card. Furthermore, we have set that the first time it is read a heading with each type of data and the time of the start will be recorded
+```python
+storageI = open("monitoring.csv", "a")
+    storageE = open("/sd/monitoring.csv","a")
+    local_time = time.localtime()
+    storageE.write(f"temperature,humidity, Pressure, Time(started:{local_time[0]} {local_time[1]} {local_time[2]} {local_time[3]}:{local_time[4]}:{local_time[5]})\n")
 
+```
 
 ###### 6th stage:Monitoring Loop
-
+As the last and main functionality of the software we have the main loop which is responsible of the monitorizing of our system. This every time the loop starts it will ask the needed informatio to the sensors and then that it will be written in the external and internal memory as csv. This type of format later will be come handy to be exported to excel for further analysis.
+```python
+while True:
+        led2.off()
+        #DHT12 section
+        
+        sensorTemHum.measure()
+        t=sensorTemHum.temperature()
+        h=sensorTemHum.humidity()
+        
+        #mpl3115a2 Section
+        
+        pressure_pa=0
+        status = i2c.readfrom_mem(ADDR, STATUS, 1)
+        if status[0] & 0x08:
+            data = i2c.readfrom_mem(ADDR, OUT_P_MSB, 3)
+            pressure_pa = (data[0] << 16 | data[1] << 8 | data[2]) >> 6
+        else:
+            print("error altimeter")
+            
+            
+        local_time = time.localtime()
+            
+        print(f"Temperature: {t} C, Humidity: {h} RH, Relative Pressure: {pressure_pa:.2f} Pa, Year:{local_time[0]} , Month:{local_time[1]} , Day:{local_time[2]} , Hour:{local_time[3]}, Minute:{local_time[4]}, Second:{local_time[5]}" )
+        time.sleep(1)
+        
+        
+    #Export data
+        storageI.write(f"{t} C,{h} RH, {pressure_pa:.2f} Pa, {local_time[0]} {local_time[1]} {local_time[2]} {local_time[3]}:{local_time[4]}:{local_time[5]}\n")
+        time.sleep(0.25)
+        storageI.flush()
+        
+         
+        storageE.write(f"{t} C,{h} RH, {pressure_pa:.2f} Pa, {local_time[0]} {local_time[1]} {local_time[2]} {local_time[3]}:{local_time[4]}:{local_time[5]}\n")
+        time.sleep(0.25)
+        storageE.flush()
+        led2.on()
+        time.sleep(0.25)
+```
 
 ###### 7th stage:Manual Interruption 
-
+As a final stage if a error would happen there is an exception to stop the programme and a message will showcase that it has been stopped manually
+```python
+except KeyboardInterrupt:
+    
+    print(f"Program stopped manually")
+```
 
 ### Technical documentation
 
