@@ -218,7 +218,11 @@ except KeyboardInterrupt:
 ##### Tools
 The tools library was created to gather all the support functions made for the main program and we can difference one class and one function.
 ###### Class Errors
-This class was made in order to strengthen our code through some check ups that it will be made in order to ensure its correct status
+This class was made in order to strengthen our code through some check ups that it will be made in order to ensure its correct status.
+
+<details>
+<summary>View code</summary>
+
 ````python
 class ERRORS:
     def __init__(self, i2c):
@@ -231,10 +235,19 @@ class ERRORS:
             return 1
         else:
             print("Problem Sensors. CHECK CONNECTION")
+ ````
 
-````
+</details>
+
+
+
+
 ###### Def Connection
 This function was made to connect the esp32 to internet and it was written in the tools so it could be used repeteadly through the program.
+
+<details>
+<summary>View Code</summary>
+
 ```python
  def do_connect():
         wlan = network.WLAN(network.STA_IF)
@@ -246,6 +259,10 @@ This function was made to connect the esp32 to internet and it was written in th
                     time.sleep(1)
                 print('network configuration:', wlan.ifconfig())
 ```
+
+ 
+</details>
+
 #### Code downloaded from other githubs
 ##### dht12 libraries
 This were downloaded from a github https://github.com/mcauser/micropython-dht12/tree/master the code it was located in the source carpet. This library contains some funcionalities for our sensor and has a MIT license so we are granted with permission to use it.
