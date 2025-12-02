@@ -19,7 +19,7 @@ try:
     
     #SPI setup card
     spi = machine.SPI(1,
-    baudrate=100000,
+    baudrate=400000,
     polarity=0,
     phase=0,
     sck=machine.Pin(18),
@@ -70,6 +70,8 @@ try:
     #Prepare storage
     storageI = open("monitoring.csv", "a")
     storageE = open("/sd/monitoring.csv","a")
+    local_time = time.localtime()
+    storageE.write(f"temperature,humidity, Pressure, Time(started:{local_time[0]} {local_time[1]} {local_time[2]} {local_time[3]}:{local_time[4]}:{local_time[5]})\n")
     
     # Monitorize
     while True:
@@ -86,8 +88,7 @@ try:
         status = i2c.readfrom_mem(ADDR, STATUS, 1)
         if status[0] & 0x08:
             data = i2c.readfrom_mem(ADDR, OUT_P_MSB, 3)
-            pres_raw = (data[0] << 16 | data[1] << 8 | data[2]) >> 6
-            pressure_pa = pres_raw / 4.0
+            pressure_pa = (data[0] << 16 | data[1] << 8 | data[2]) >> 6
         else:
             print("error altimeter")
             
@@ -100,9 +101,14 @@ try:
         
     #Export data
         storageI.write(f"{t} C,{h} RH, {pressure_pa:.2f} Pa, {local_time[0]} {local_time[1]} {local_time[2]} {local_time[3]}:{local_time[4]}:{local_time[5]}\n")
-        storageI.flush() 
+        time.sleep(0.25)
+        storageI.flush()
+        
+         
         storageE.write(f"{t} C,{h} RH, {pressure_pa:.2f} Pa, {local_time[0]} {local_time[1]} {local_time[2]} {local_time[3]}:{local_time[4]}:{local_time[5]}\n")
+        time.sleep(0.25)
         storageE.flush()
+        
         
         
         
