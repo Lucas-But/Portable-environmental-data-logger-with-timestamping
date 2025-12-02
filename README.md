@@ -101,8 +101,4 @@ In the first phase of the main our program initialize all the constants and comm
 
 https://github.com/micropython/micropython-lib/blob/master/LICENSE
 
-Components we used to fulfil the project:
-ESP32-firebeetle
-
-DHT12 sensor
 
