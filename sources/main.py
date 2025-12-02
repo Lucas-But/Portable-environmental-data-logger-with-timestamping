@@ -19,7 +19,7 @@ try:
     
     #SPI setup card
     spi = machine.SPI(1,
-    baudrate=400000,
+    baudrate=1320000,
     polarity=0,
     phase=0,
     sck=machine.Pin(18),
@@ -27,7 +27,7 @@ try:
     miso=machine.Pin(19)
     )
     #chip select
-    cs = machine.Pin(5, machine.Pin.OUT)
+    cs = Pin(5, machine.Pin.OUT)
     
     #Initialize
     sd = sdcard.SDCard(spi, cs)
@@ -38,7 +38,10 @@ try:
     i2c =I2C(0, scl=Pin(22), sda=Pin(21), freq=100_000)
     sensorTemHum = dht12.DHT12(i2c)
 
-    led=Pin(2 , Pin.OUT)
+    led1=Pin(2 , Pin.OUT)
+    led2=Pin(26, Pin.OUT)
+    
+    
     sensorconnection=0
     bugs = tools.ERRORS(i2c)
     while sensorconnection==0:
@@ -46,9 +49,9 @@ try:
         if sensorconnection==0:
             print("waiting for connection")
             for _ in range(5):
-                led.off()
+                led1.off()
                 time.sleep(0.5)
-                led.on()
+                led1.on()
                 time.sleep(0.5)
             
     # Function connect wifi get time        
@@ -75,7 +78,7 @@ try:
     
     # Monitorize
     while True:
-        
+        led2.off()
         #DHT12 section
         
         sensorTemHum.measure()
@@ -108,7 +111,8 @@ try:
         storageE.write(f"{t} C,{h} RH, {pressure_pa:.2f} Pa, {local_time[0]} {local_time[1]} {local_time[2]} {local_time[3]}:{local_time[4]}:{local_time[5]}\n")
         time.sleep(0.25)
         storageE.flush()
-        
+        led2.on()
+        time.sleep(0.25)
         
         
         
