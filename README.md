@@ -76,7 +76,7 @@ In the first phase of the main our program initialize all the constants and comm
      led2=Pin(26 , Pin.OUT)
      sensorconnection=0
      bugs = tools.ERRORS(i2c)
-´´´
+```
  
 </details>
 
