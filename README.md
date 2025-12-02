@@ -40,7 +40,7 @@ In the main we can find 7 stages of the code:
 In the first phase of the main our program initialize all the constants and communication protocols as well as create the memory space of the sd card:
 <details>
 <summary>View code</summary>
-```python
+``` python
 try:
 #Constants
     ADDR = 0x60
@@ -83,7 +83,7 @@ try:
 ###### 2nd stage:Connection Verification
 In this stage all the connections to the sensors are checked in order to ensure a proper function of our system.
 <details>
-```python
+``` python
     sensorconnection=0
     bugs = tools.ERRORS(i2c)
     while sensorconnection==0:
@@ -100,7 +100,7 @@ In this stage all the connections to the sensors are checked in order to ensure 
 
 ###### 3rd stage:Network & Time Sync
 In this part we use a function from our custom library named tools to make a connection to the internet so we can get the time:
-```python
+``` python
  tools.do_connect()
     
     try:
@@ -110,7 +110,7 @@ In this part we use a function from our custom library named tools to make a con
 ```
 ###### 4th stage:Sensor Configuration
 In this phase we activate the interruption register from mpl3115a2 that messures the pressure, we put the sensor in standby and then we activate it. For stability reason we have implemented a time sleep so the sensor could be set properly.
-```python
+``` python
 i2c.writeto_mem(ADDR, PT_DATA_CFG, b'\x07') # Interruption activation
     i2c.writeto_mem(ADDR, CTRL_REG1, b'\x38')  # Standby
     i2c.writeto_mem(ADDR, CTRL_REG1, b'\x39')  # Active
