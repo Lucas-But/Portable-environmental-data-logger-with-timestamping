@@ -88,8 +88,8 @@ bugs = tools.ERRORS(i2c)
 In this stage all the connections to the sensors are checked in order to ensure a proper function of our system.
 
 <details>
- 
 <summary>View code </summary>
+
 ``` python
   sensorconnection=0
   bugs = tools.ERRORS(i2c)
@@ -109,8 +109,10 @@ In this stage all the connections to the sensors are checked in order to ensure 
 ###### 3rd stage:Network andTime Sync
 In this part we use a function from our custom library named tools to make a connection to the internet so we can get the time:
 
-
-```python
+<details>
+<summarize>View Code</summarize>
+ 
+ ```python
  tools.do_connect()
     
     try:
@@ -119,27 +121,44 @@ In this part we use a function from our custom library named tools to make a con
         print("Cannot synchronize time. CHECK INTERNET CONNECTION")
 ```
 
+</details>
+
 ###### 4th stage:Sensor Configuration
 In this phase we activate the interruption register from mpl3115a2 that messures the pressure, we put the sensor in standby and then we activate it. For stability reason we have implemented a time sleep so the sensor could be set properly.
-```python
+<details>
+<summarize>View Code</summarize>
+
+ ```python
 i2c.writeto_mem(ADDR, PT_DATA_CFG, b'\x07') # Interruption activation
     i2c.writeto_mem(ADDR, CTRL_REG1, b'\x38')  # Standby
     i2c.writeto_mem(ADDR, CTRL_REG1, b'\x39')  # Active
     time.sleep(1)
 ```
+</details>
+
 
 ###### 5th stage:Storage Preparation
-In this case we have prepared two types of storage so in order fails one we have the backup of the other one. So, it has been set up as "storageI" the internal storage of the ESP32 and the "StorageE" as an external SD card. Furthermore, we have set that the first time it is read a heading with each type of data and the time of the start will be recorded
-```python
+In this case we have prepared two types of storage so in order fails one we have the backup of the other one. So, it has been set up as "storageI" the internal storage of the ESP32 and the "StorageE" as an external SD card. Furthermore, we have set that the first time it is read a heading with each type of data and the time of the start will be recorded.
+<details>
+<summarize>View code</summarize>
+
+ ```python
 storageI = open("monitoring.csv", "a")
     storageE = open("/sd/monitoring.csv","a")
     local_time = time.localtime()
     storageE.write(f"temperature,humidity, Pressure, Time(started:{local_time[0]} {local_time[1]} {local_time[2]} {local_time[3]}:{local_time[4]}:{local_time[5]})\n")
 
 ```
+</details>
+
+
 
 ###### 6th stage:Monitoring Loop
 As the last and main functionality of the software we have the main loop which is responsible of the monitorizing of our system. This every time the loop starts it will ask the needed information to the sensors and then that it will be written in the external and internal memory as csv. This type of format later will be come handy to be exported to excel for further analysis.
+
+<details>
+<summarize>View code</summarize>
+
 ```python
 while True:
         led2.off()
@@ -178,14 +197,24 @@ while True:
         led2.on()
         time.sleep(0.25)
 ```
+ 
+</details>
+
+
 
 ###### 7th stage:Manual Interruption 
 As a final stage if a error would happen there is an exception to stop the programme and a message will showcase that it has been stopped manually
+<details>
+<summarize>View code</summarize>
+ 
 ```python
 except KeyboardInterrupt:
     
     print(f"Program stopped manually")
 ```
+ 
+</details>
+
 ##### Tools
 The tools library was created to gather all the support functions made for the main program and we can difference one class and one function.
 ###### Class Errors
