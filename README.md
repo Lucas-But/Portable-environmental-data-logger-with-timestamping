@@ -248,7 +248,9 @@ class DHT12:
 ##### sdcard library
 This library is has a class that is in charge of creating the connection between the ESP32 and the sd card module via SPI. The code was substarcted from this webpage: https://github.com/micropython/micropython-lib/tree/master/micropython/drivers/storage/sdcard and the repository is with an MIT license that allows us to use it.
 <details>
-  <summary> View code from library </summary>
+<summary> View code from library </summary>
+
+ 
 ```python
  
 #MicroPython driver for SD cards using SPI bus.
@@ -256,14 +258,14 @@ This library is has a class that is in charge of creating the connection between
 #Requires an SPI bus and a CS pin.  Provides readblocks and writeblocks
 #methods so the device can be mounted as a filesystem.
 
-#Example usage on pyboard
+#Example usage on pyboard:
 
     #import pyb, sdcard, os
     #sd = sdcard.SDCard(pyb.SPI(1), pyb.Pin.board.X5)
     #pyb.mount(sd, '/sd2')
     #os.listdir('/')
 
-#Example usage on ESP8266
+#Example usage on ESP8266:
 
     #import machine, sdcard, os
     #sd = sdcard.SDCard(machine.SPI(1), machine.Pin(15))
