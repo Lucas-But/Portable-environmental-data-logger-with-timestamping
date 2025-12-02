@@ -88,31 +88,29 @@ bugs = tools.ERRORS(i2c)
 In this stage all the connections to the sensors are checked in order to ensure a proper function of our system.
 
 <details>
- <summary>View code </summary>
- ``` python
-    sensorconnection=0
-    bugs = tools.ERRORS(i2c)
-    while sensorconnection==0:
-        sensorconnection= bugs.i2c_check()
-        if sensorconnection==0:
-            print("waiting for connection")
-            for _ in range(5):
-                led1.off()
-                time.sleep(0.5)
-                led1.on()
-                time.sleep(0.5)
+ 
+<summary>View code </summary>
+``` python
+  sensorconnection=0
+  bugs = tools.ERRORS(i2c)
+  while sensorconnection==0:
+      sensorconnection= bugs.i2c_check()
+      if sensorconnection==0:
+          print("waiting for connection")
+          for _ in range(5):
+              led1.off()
+              time.sleep(0.5)
+              led1.on()
+              time.sleep(0.5)
 
 ```
 </details>
-
-
-
 
 ###### 3rd stage:Network andTime Sync
 In this part we use a function from our custom library named tools to make a connection to the internet so we can get the time:
 
 
-``` python
+```python
  tools.do_connect()
     
     try:
@@ -123,7 +121,7 @@ In this part we use a function from our custom library named tools to make a con
 
 ###### 4th stage:Sensor Configuration
 In this phase we activate the interruption register from mpl3115a2 that messures the pressure, we put the sensor in standby and then we activate it. For stability reason we have implemented a time sleep so the sensor could be set properly.
-``` python
+```python
 i2c.writeto_mem(ADDR, PT_DATA_CFG, b'\x07') # Interruption activation
     i2c.writeto_mem(ADDR, CTRL_REG1, b'\x38')  # Standby
     i2c.writeto_mem(ADDR, CTRL_REG1, b'\x39')  # Active
