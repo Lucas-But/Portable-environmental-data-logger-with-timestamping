@@ -110,7 +110,7 @@ In this stage all the connections to the sensors are checked in order to ensure 
 In this part we use a function from our custom library named tools to make a connection to the internet so we can get the time:
 
 <details>
-<summarize>View Code</summarize>
+<summary>View Code</summary>
  
  ```python
  tools.do_connect()
@@ -126,7 +126,7 @@ In this part we use a function from our custom library named tools to make a con
 ###### 4th stage:Sensor Configuration
 In this phase we activate the interruption register from mpl3115a2 that messures the pressure, we put the sensor in standby and then we activate it. For stability reason we have implemented a time sleep so the sensor could be set properly.
 <details>
-<summarize>View Code</summarize>
+<summary>View Code</summary>
 
  ```python
 i2c.writeto_mem(ADDR, PT_DATA_CFG, b'\x07') # Interruption activation
@@ -140,7 +140,7 @@ i2c.writeto_mem(ADDR, PT_DATA_CFG, b'\x07') # Interruption activation
 ###### 5th stage:Storage Preparation
 In this case we have prepared two types of storage so in order fails one we have the backup of the other one. So, it has been set up as "storageI" the internal storage of the ESP32 and the "StorageE" as an external SD card. Furthermore, we have set that the first time it is read a heading with each type of data and the time of the start will be recorded.
 <details>
-<summarize>View code</summarize>
+<summary>View code</summary>
 
  ```python
 storageI = open("monitoring.csv", "a")
@@ -157,7 +157,7 @@ storageI = open("monitoring.csv", "a")
 As the last and main functionality of the software we have the main loop which is responsible of the monitorizing of our system. This every time the loop starts it will ask the needed information to the sensors and then that it will be written in the external and internal memory as csv. This type of format later will be come handy to be exported to excel for further analysis.
 
 <details>
-<summarize>View code</summarize>
+<summary>View code</summary>
 
 ```python
 while True:
@@ -205,7 +205,7 @@ while True:
 ###### 7th stage:Manual Interruption 
 As a final stage if a error would happen there is an exception to stop the programme and a message will showcase that it has been stopped manually
 <details>
-<summarize>View code</summarize>
+<summary>View code</summary>
  
 ```python
 except KeyboardInterrupt:
