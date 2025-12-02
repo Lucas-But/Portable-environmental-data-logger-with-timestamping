@@ -87,8 +87,9 @@ bugs = tools.ERRORS(i2c)
 ###### 2nd stage:Connection Verification
 In this stage all the connections to the sensors are checked in order to ensure a proper function of our system.
 
-
-``` python
+<details>
+ <summary>View code </summary>
+ ``` python
     sensorconnection=0
     bugs = tools.ERRORS(i2c)
     while sensorconnection==0:
@@ -102,10 +103,12 @@ In this stage all the connections to the sensors are checked in order to ensure 
                 time.sleep(0.5)
 
 ```
+</details>
 
 
 
-###### 3rd stage:Network & Time Sync
+
+###### 3rd stage:Network andTime Sync
 In this part we use a function from our custom library named tools to make a connection to the internet so we can get the time:
 
 
