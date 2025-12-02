@@ -99,6 +99,7 @@ In this stage all the connections to the sensors are checked in order to ensure 
 
 ```
 </details>
+
 ###### 3rd stage:Network & Time Sync
 In this part we use a function from our custom library named tools to make a connection to the internet so we can get the time:
 ``` python
