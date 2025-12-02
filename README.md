@@ -38,6 +38,8 @@ The code it is divided in two main types the ones developed in by ourselfs and t
 In the main we can find 7 stages of the code:
 ###### 1st stage: Initialization
 In the first phase of the main our program initialize all the constants and communication protocols as well as create the memory space of the sd card:
+<details>
+<summary>View code</summary>
 ```python
 try:
 #Constants
@@ -75,6 +77,9 @@ try:
     sensorconnection=0
     bugs = tools.ERRORS(i2c)
 ```
+ 
+</details>
+
 ###### 2nd stage:Connection Verification
 In this stage all the connections to the sensors are checked in order to ensure a proper function of our system.
 ```python
