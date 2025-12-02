@@ -76,12 +76,13 @@ try:
     led2=Pin(26 , Pin.OUT)
     sensorconnection=0
     bugs = tools.ERRORS(i2c)
-```
+´´´
  
 </details>
 
 ###### 2nd stage:Connection Verification
 In this stage all the connections to the sensors are checked in order to ensure a proper function of our system.
+<details>
 ```python
     sensorconnection=0
     bugs = tools.ERRORS(i2c)
