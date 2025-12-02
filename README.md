@@ -256,14 +256,14 @@ This library is has a class that is in charge of creating the connection between
 #Requires an SPI bus and a CS pin.  Provides readblocks and writeblocks
 #methods so the device can be mounted as a filesystem.
 
-#Example usage on pyboard:
+#Example usage on pyboard
 
     #import pyb, sdcard, os
     #sd = sdcard.SDCard(pyb.SPI(1), pyb.Pin.board.X5)
     #pyb.mount(sd, '/sd2')
     #os.listdir('/')
 
-#Example usage on ESP8266:
+#Example usage on ESP8266
 
     #import machine, sdcard, os
     #sd = sdcard.SDCard(machine.SPI(1), machine.Pin(15))
