@@ -41,41 +41,41 @@ In the first phase of the main our program initialize all the constants and comm
 <details>
 <summary>View code</summary>
 ``` python
-try:
-#Constants
-    ADDR = 0x60
-    CTRL_REG1 = 0x26
-    PT_DATA_CFG = 0x13
-    STATUS = 0x00
-    OUT_P_MSB = 0x01
-    SSID="UREL-SC661-V-2.4G"
-    PASSWORD="TomFryza"
-    
-    #SPI setup card
-    spi = machine.SPI(1,
-    baudrate=100000,
-    polarity=0,
-    phase=0,
-    sck=machine.Pin(18),
-    mosi=machine.Pin(23),
-    miso=machine.Pin(19)
-    )
-    #chip select
-    cs = machine.Pin(5, machine.Pin.OUT)
-    
-    #Initialize
-    sd = sdcard.SDCard(spi, cs)
-    vfs = os.VfsFat(sd)
-    os.mount(vfs, "/sd")
-    
-    #I2C Setup
-    i2c =I2C(0, scl=Pin(22), sda=Pin(21), freq=100_000)
-    sensorTemHum = dht12.DHT12(i2c)
-
-    led1=Pin(2 , Pin.OUT)
-    led2=Pin(26 , Pin.OUT)
-    sensorconnection=0
-    bugs = tools.ERRORS(i2c)
+  try:
+  #Constants
+     ADDR = 0x60
+     CTRL_REG1 = 0x26
+     PT_DATA_CFG = 0x13
+     STATUS = 0x00
+     OUT_P_MSB = 0x01
+     SSID="UREL-SC661-V-2.4G"
+     PASSWORD="TomFryza"
+     
+     #SPI setup card
+     spi = machine.SPI(1,
+     baudrate=100000,
+     polarity=0,
+     phase=0,
+     sck=machine.Pin(18),
+     mosi=machine.Pin(23),
+     miso=machine.Pin(19)
+     )
+     #chip select
+     cs = machine.Pin(5, machine.Pin.OUT)
+     
+     #Initialize
+     sd = sdcard.SDCard(spi, cs)
+     vfs = os.VfsFat(sd)
+     os.mount(vfs, "/sd")
+     
+     #I2C Setup
+     i2c =I2C(0, scl=Pin(22), sda=Pin(21), freq=100_000)
+     sensorTemHum = dht12.DHT12(i2c)
+ 
+     led1=Pin(2 , Pin.OUT)
+     led2=Pin(26 , Pin.OUT)
+     sensorconnection=0
+     bugs = tools.ERRORS(i2c)
 ´´´
  
 </details>
