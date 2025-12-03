@@ -19,7 +19,8 @@ Our goal with this project is to create an autonomous weather station that colec
 | **MicroSD Module**      | Module to conect the SD card to the ESP32 | <img width="320"  src="https://github.com/user-attachments/assets/16de2077-ac19-4f89-b3d6-b01bca7977c4" /> |
 | **ESP32 FireBeetle**    | Microprocesor | <img width="320"  src="https://github.com/user-attachments/assets/b03e0de9-60dd-40b8-ad49-f7ffebcfeb84" /> |
 | **MicroSD 8GB**    | SD storage | <img width="320" height="543" alt="image" src="https://github.com/user-attachments/assets/2ddc0fa7-6497-4d66-8750-d3dac361974c" />|
-| **LED** | Visual device to see if all sensors are conected | <img width="299" height="168" alt="image" src="https://github.com/user-attachments/assets/329247f4-3faa-455b-beba-5edbe7a98a79" /> |
+| **LED** | Visual device to see errors | <img width="299" height="168" alt="image" src="https://github.com/user-attachments/assets/329247f4-3faa-455b-beba-5edbe7a98a79" /> |
+| **Resistor** | To control the intensity through the led | <img width="299" height="168" alt="image" src="https://github.com/user-attachments/assets/b8b2e56c-7066-4638-9d8d-45e9fd11a5be" /> |
 
 
 
