@@ -76,7 +76,7 @@ i2c = I2C(0, scl=Pin(22), sda=Pin(21), freq=100_000)
 sensorTemHum = dht12.DHT12(i2c)
 
 led1 = Pin(2, Pin.OUT)
-led2 = Pin(26, Pin.OUT)
+led2 = Pin(25, Pin.OUT)
 
 sensorconnection = 0
 bugs = tools.ERRORS(i2c)
