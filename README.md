@@ -634,9 +634,22 @@ class SDCard:
 
 ### Technical documentation
 
+<img width="857" height="641" alt="image" src="https://github.com/user-attachments/assets/92d53c76-35fe-4e3d-9fc7-89f1634f5ea7" />
+
+**Libreries flowchats**
+<img width="634" height="374" alt="image" src="https://github.com/user-attachments/assets/60d1fc1d-5c90-4e1d-994e-ef06979d69d1" />
+<img width="533" height="361" alt="image" src="https://github.com/user-attachments/assets/bdd38008-50e4-4da8-ad24-40189d89afea" />
+<img width="222" height="303" alt="image" src="https://github.com/user-attachments/assets/f72d2f52-b243-4557-83af-fa57a1938ffb" />
+<img width="314" height="443" alt="image" src="https://github.com/user-attachments/assets/c30727ea-d0b6-4ef1-a43e-110a5c2d066a" />
+<img width="350" height="496" alt="image" src="https://github.com/user-attachments/assets/8bb45ba6-ae37-4238-9630-d1edfd50bb68" />
+
+
+
+
 
 ### Pitch Poster
 
+<img width="1414" height="2000" alt="image" src="https://github.com/user-attachments/assets/2de67c03-6657-4736-a720-017f6dbfa98b" />
 
 
 https://github.com/micropython/micropython-lib/blob/master/LICENSE
