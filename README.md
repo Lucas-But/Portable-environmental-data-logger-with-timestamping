@@ -652,6 +652,5 @@ class SDCard:
 <img width="1414" height="2000" alt="image" src="https://github.com/user-attachments/assets/2de67c03-6657-4736-a720-017f6dbfa98b" />
 
 Video: https://youtu.be/B9_EtuTjGns
-https://github.com/micropython/micropython-lib/blob/master/LICENSE
 
 
