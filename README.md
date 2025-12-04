@@ -634,9 +634,10 @@ class SDCard:
 
 ### Technical documentation
 
-<img width="857" height="641" alt="image" src="https://github.com/user-attachments/assets/92d53c76-35fe-4e3d-9fc7-89f1634f5ea7" />
+<img width="859" height="633" alt="image" src="https://github.com/user-attachments/assets/431a2b61-d56e-4c92-ab43-23f644ff70c8" />
 
 **Libreries flowchats**
+
 <img width="634" height="374" alt="image" src="https://github.com/user-attachments/assets/60d1fc1d-5c90-4e1d-994e-ef06979d69d1" />
 <img width="533" height="361" alt="image" src="https://github.com/user-attachments/assets/bdd38008-50e4-4da8-ad24-40189d89afea" />
 <img width="222" height="303" alt="image" src="https://github.com/user-attachments/assets/f72d2f52-b243-4557-83af-fa57a1938ffb" />
